@@ -32,7 +32,7 @@ const Navbar = async () => {
                 </Link>
                 {isAdmin && (
                   <Link
-                    href="/api/auth/dashboard"
+                    href="/dashboard"
                     className={buttonVariants({
                       size: "sm",
                       variant: "ghost",
