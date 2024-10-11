@@ -1,12 +1,9 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Steps from "@/components/Steps";
-import { Metadata } from "next";
+import { constructMetadata } from "@/lib/utils";
 import { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  title: "configure",
-  description: "caseCobra",
-};
+export const metadata = constructMetadata({ title: "Configure" });
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
