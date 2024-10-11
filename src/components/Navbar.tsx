@@ -21,15 +21,6 @@ const Navbar = async () => {
           <div className="h-full flex items-center space-x-4 text-slate-900 font-semibold">
             {user ? (
               <>
-                {/* <Link
-                  href="/api/auth/logout"
-                  className={buttonVariants({
-                    size: "sm",
-                    variant: "ghost",
-                  })}
-                >
-                  Sign Out
-                </Link> */}
                 {isAdmin && (
                   <Link
                     href="/dashboard"
@@ -51,6 +42,16 @@ const Navbar = async () => {
                 >
                   Create case
                   <ArrowRight className="ml-1.5 size-5" />
+                </Link>
+
+                <Link
+                  href="/api/auth/logout"
+                  className={buttonVariants({
+                    size: "sm",
+                    variant: "ghost",
+                  })}
+                >
+                  Sign Out
                 </Link>
               </>
             ) : (
