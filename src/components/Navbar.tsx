@@ -44,7 +44,7 @@ const Navbar = async () => {
                   <ArrowRight className="ml-1.5 size-5" />
                 </Link>
 
-                <Link
+                {/* <Link
                   href="/api/auth/logout"
                   className={buttonVariants({
                     size: "sm",
@@ -52,7 +52,7 @@ const Navbar = async () => {
                   })}
                 >
                   Sign Out
-                </Link>
+                </Link> */}
               </>
             ) : (
               <>
