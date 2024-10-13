@@ -16,8 +16,8 @@ import {
 
 const OrderReceivedEmail = ({
   shippingAddress,
-  orderDate,
   orderId,
+  orderDate,
 }: {
   shippingAddress: ShippingAddress;
   orderId: string;
@@ -27,10 +27,11 @@ const OrderReceivedEmail = ({
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
       : "https://photo-cover-app.vercel.app";
+
   return (
     <Html>
       <Head />
-      <Preview>Your orders summary and estimated delivery date</Preview>
+      <Preview>Your order summary and estimated delivery date</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={message}>
@@ -41,7 +42,7 @@ const OrderReceivedEmail = ({
               alt="delivery snake"
               style={{ margin: "auto" }}
             />
-            <Heading style={global.heading}>Thank You For Your Order !</Heading>
+            <Heading style={global.heading}>Thank you for your order!</Heading>
             <Text style={global.text}>
               We're preparing everything for delivery and will notify you once
               your package has been shipped. Delivery usually takes 2 days.
@@ -51,9 +52,7 @@ const OrderReceivedEmail = ({
               to contact us with your order number and we're here to help.
             </Text>
           </Section>
-
           <Hr style={global.hr} />
-
           <Section style={global.defaultPadding}>
             <Text style={adressTitle}>Shipping to: {shippingAddress.name}</Text>
             <Text style={{ ...global.text, fontSize: 14 }}>
@@ -61,9 +60,7 @@ const OrderReceivedEmail = ({
               {shippingAddress.state} {shippingAddress.postalCode}
             </Text>
           </Section>
-
           <Hr style={global.hr} />
-
           <Section style={global.defaultPadding}>
             <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
               <Column style={{ width: 170 }}>

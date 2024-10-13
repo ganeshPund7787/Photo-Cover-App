@@ -72,7 +72,7 @@ export async function POST(req: Request) {
       });
 
       await resend.emails.send({
-        from: "CaseCobra <ganupund7218@gmail.com>",
+        from: "CaseCobra <ganupund7787@gmail.com>",
         to: [event.data.object.customer_details.email],
         subject: "Thanks for your order!",
         react: OrderReceivedEmail({
@@ -80,14 +80,14 @@ export async function POST(req: Request) {
           orderDate: updatedOrder.createdAt.toLocaleDateString(),
 
           shippingAddress: {
-            id: updatedOrder.id,
+            id: "",
             name: session.customer_details!.name!,
             city: shippingAddress!.city!,
             country: shippingAddress!.country!,
             postalCode: shippingAddress!.postal_code!,
             street: shippingAddress!.line1!,
             state: shippingAddress!.state,
-            phoneNumber: "12345667890",
+            phoneNumber: null,
           },
         }),
       });
