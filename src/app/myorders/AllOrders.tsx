@@ -1,83 +1,3 @@
-// "use client";
-
-// import {
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardFooter,
-//   CardHeader,
-// } from "@/components/ui/card";
-// import { useQuery } from "@tanstack/react-query";
-// import { GetMyOrders } from "./actions";
-// import {
-//   BillingAddress,
-//   Configuration,
-//   Order,
-//   OrderStatus,
-//   ShippingAddress,
-// } from "@prisma/client";
-// import Phone from "@/components/Phone";
-
-// // export type OrderType = {
-// //   amount?: number;
-// //   isPaid?: boolean;
-// //   status?: OrderStatus;
-// //   configuration?: Configuration;
-// //   shippingAddressId?: string;
-// //   shippingAddress?: ShippingAddress;
-// //   billingAddressId?: string;
-// //   billingAddress?: BillingAddress;
-// //   createdAt?: Date;
-// // };
-
-// const AllOrders = ({ userId }: { userId: string }) => {
-//   const { data: Orders, isLoading } = useQuery({
-//     queryKey: ["get-my-orders", userId],
-//     queryFn: async () => await GetMyOrders({ userId }),
-//     retry: 3,
-//   });
-//   console.log("All Orders Details: ", Orders);
-//   if (isLoading) return <div className="text-center mt-[10%]">Loading...</div>;
-
-//   if (!Orders || Orders.length === 0) {
-//     return (
-//       <div className="text-center mt-[10%]"> You Dont Have Any Order . </div>
-//     );
-//   }
-
-//   return (
-//     <div className="mx-5 flex flex-col gap-5 mt-5">
-//       <div className="">
-//         <h1 className="text-2xl md:text-4xl font-semibold">My Orders </h1>
-//       </div>
-//       <div className="">
-//         {Orders &&
-//           Orders?.map((order: OrderType) => {
-//             return (
-//               <Card>
-//                 <CardHeader className="pb-2">
-//                   <CardDescription>
-//                     Order Date :{" "}
-//                     {new Date(order.createdAt).toLocaleDateString()}{" "}
-//                   </CardDescription>
-//                 </CardHeader>
-//                 <CardContent>
-//                   <div className="grid grid-cols-1 md:grid-cols-2">
-//                     <Phone imgSrc={order} />
-//                     {order.amount}
-//                   </div>
-//                 </CardContent>
-//                 <CardFooter></CardFooter>
-//               </Card>
-//             );
-//           })}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AllOrders;
-
 "use client";
 
 import {
@@ -103,7 +23,7 @@ export type OrderType = {
   amount?: number;
   isPaid?: boolean;
   status?: OrderStatus;
-  configuration?: Configuration | null;
+  configuration?: Configuration;
   shippingAddressId?: string | null;
   shippingAddress?: ShippingAddress | null;
   billingAddressId?: string | null;
@@ -151,7 +71,11 @@ const AllOrders = ({ userId }: { userId: string }) => {
                           `bg-${order.configuration?.color}`,
                           "max-w-[150px]"
                         )}
-                        imgSrc={order.configuration?.croppedImageUrl!}
+                        imgSrc={
+                          order.configuration?.croppedImageUrl
+                            ? order.configuration?.croppedImageUrl
+                            : ""
+                        }
                       />
                     </div>
                     <div className="md:w-[70%]">
@@ -164,9 +88,9 @@ const AllOrders = ({ userId }: { userId: string }) => {
                         <span>Price: {order.amount}</span>
                         <span>
                           Payment Status:{" "}
-                          {order.isPaid ? (
+                          {order.isPaid && (
                             <span className="text-green-700">Paid</span>
-                          ) : null}
+                          )}
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-x-6 py-10 text-sm">
