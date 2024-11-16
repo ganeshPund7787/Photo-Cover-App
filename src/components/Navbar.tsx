@@ -41,7 +41,7 @@ const Navbar = async () => {
                 >
                   My Orders
                 </Link>
-                {/* <Link
+                <Link
                   href="/api/auth/logout"
                   className={buttonVariants({
                     size: "sm",
@@ -49,8 +49,7 @@ const Navbar = async () => {
                   })}
                 >
                   Sign Out
-                </Link> */}
-
+                </Link>
                 <Link
                   href="/configure/upload"
                   className={buttonVariants({

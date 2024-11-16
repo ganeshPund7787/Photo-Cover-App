@@ -1,8 +1,13 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import React from "react";
-import AllOrders from "./AllOrders";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { notFound } from "next/navigation";
+import Dynamic from "next/dynamic";
+import Loader from "@/components/Loader";
+
+const AllOrders = Dynamic(() => import("./AllOrders"), {
+  loading: () => <Loader />,
+});
 
 const Page = async () => {
   const { getUser } = getKindeServerSession();

@@ -1,7 +1,12 @@
 import { db } from "@/db";
 import { notFound } from "next/navigation";
-import DesignPreview from "./DesignPreview";
+import Dynamic from "next/dynamic";
+import Loader from "@/components/Loader";
 
+const DesignPreview = Dynamic(() => import("./DesignPreview"), {
+  loading: () => <Loader />,
+  ssr: false,
+});
 interface PageProps {
   searchParams: {
     [key: string]: string | string[] | undefined;

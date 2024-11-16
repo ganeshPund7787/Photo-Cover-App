@@ -19,12 +19,17 @@ import { db } from "@/db";
 import { formatPrice } from "@/lib/utils";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
-import StatusDropdown from "./StatusDropdown";
+import Dynamic from "next/dynamic";
+import Loader from "@/components/Loader";
+
+const StatusDropdown = Dynamic(() => import("./StatusDropdown"), {
+  loading: () => <Loader />,
+});
 
 const Page = async () => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  
+
   const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
   if (!user || user.email !== ADMIN_EMAIL) {

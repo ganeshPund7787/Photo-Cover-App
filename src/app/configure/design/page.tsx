@@ -1,6 +1,12 @@
 import { db } from "@/db";
 import { notFound } from "next/navigation";
-import DesignConfigurator from "./DesignConfigurator";
+import dynamic from "next/dynamic";
+import Loader from "@/components/Loader";
+
+const DesignConfigurator = dynamic(() => import("./DesignConfigurator"), {
+  loading: () => <Loader />,
+  ssr: false,
+});
 
 interface PageProps {
   searchParams: {
@@ -24,6 +30,7 @@ const Page = async ({ searchParams }: PageProps) => {
   }
 
   const { height, width, imageUrl } = configuration;
+
   return (
     <DesignConfigurator
       configId={configuration.id}

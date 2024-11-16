@@ -17,6 +17,7 @@ import {
 } from "@prisma/client";
 import Phone from "@/components/Phone";
 import { cn } from "@/lib/utils";
+import Loader from "@/components/Loader";
 
 export type OrderType = {
   id: string;
@@ -38,7 +39,7 @@ const AllOrders = ({ userId }: { userId: string }) => {
     retry: 3,
   });
 
-  if (isLoading) return <div className="text-center mt-[10%]">Loading...</div>;
+  if (isLoading) return <Loader />;
 
   if (!Orders || Orders.length === 0) {
     return (
