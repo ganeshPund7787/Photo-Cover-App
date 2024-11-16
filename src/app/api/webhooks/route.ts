@@ -93,15 +93,15 @@ export async function POST(req: Request) {
       //   }),
       // });
 
-      await sendMail(
+      const res = await sendMail(
         "ganupund7787@gmail.com",
         event.data.object.customer_details.email,
         "Thanks for your order!",
         "Hello",
         "<h1>CaseCobra</h1>"
       );
+      console.log("Responce of the email: ", res);
     }
-
     return NextResponse.json({ result: event, ok: true });
   } catch (err) {
     console.error(err);

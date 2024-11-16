@@ -7,6 +7,14 @@ import { ArrowRight, Check, Star } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
+  const CustomerArray = [
+    "/users/user-1.png",
+    "/users/user-2.png",
+    "/users/user-3.png",
+    "/users/user-4.jpg",
+    "/users/user-5.jpg",
+  ];
+
   return (
     <div className="bg-slate-50 text-slate-900">
       <section>
@@ -49,31 +57,13 @@ export default function Home() {
               </ul>
               <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 <div className="flex -space-x-0">
-                  <img
-                    src="/users/user-1.png"
-                    alt="user Image"
-                    className="inline-block size-10 rounded-full ring-4 ring-slate-200"
-                  />
-                  <img
-                    src="/users/user-2.png"
-                    alt="user Image"
-                    className="inline-block size-10 rounded-full ring-4 ring-slate-200"
-                  />
-                  <img
-                    src="/users/user-3.png"
-                    alt="user Image"
-                    className="inline-block size-10 rounded-full ring-4 ring-slate-200"
-                  />
-                  <img
-                    src="/users/user-4.jpg"
-                    alt="user Image"
-                    className="inline-block size-10 rounded-full ring-4 ring-slate-200"
-                  />
-                  <img
-                    src="/users/user-5.jpg"
-                    alt="user Image"
-                    className="inline-block object-cover size-10 rounded-full ring-4 ring-slate-200"
-                  />
+                  {CustomerArray.map((src) => (
+                    <img
+                      src={src}
+                      alt="user Image"
+                      className="inline-block object-cover size-10 rounded-full ring-4 ring-slate-200"
+                    />
+                  ))}
                 </div>
                 <div className="flex flex-col justify-between sm:items-center">
                   <div className="flex justify-center gap-0.5">
@@ -86,7 +76,8 @@ export default function Home() {
                   </div>
 
                   <p className="mt-1">
-                    <span className="font-semibold">1.250</span> Happy customers
+                    <span className="font-semibold">1.250 K </span> Happy
+                    customers
                   </p>
                 </div>
               </div>
@@ -105,7 +96,7 @@ export default function Home() {
                 alt=""
                 className="absolute w-20 -left-6 -bottom-6 select-none"
               />
-              <Phone className="w-64" imgSrc="/testimonials/4.jpg" />
+              <Phone className="w-64" imgSrc="/users/IMG-20240219-WA0181.jpg" />
             </div>
           </div>
         </MaxWidthWrapper>
