@@ -59,6 +59,7 @@ export default function Home() {
                 <div className="flex -space-x-0">
                   {CustomerArray.map((src) => (
                     <img
+                      key={src}
                       src={src}
                       alt="user Image"
                       className="inline-block object-cover size-10 rounded-full ring-4 ring-slate-200"
