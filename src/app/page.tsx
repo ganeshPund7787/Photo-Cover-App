@@ -58,12 +58,13 @@ export default function Home() {
               <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 <div className="flex -space-x-0">
                   {CustomerArray.map((src) => (
-                    <img
-                      key={src}
-                      src={src}
-                      alt="user Image"
-                      className="inline-block object-cover size-10 rounded-full ring-4 ring-slate-200"
-                    />
+                    <div key={src} className="">
+                      <img
+                        src={src}
+                        alt="user Image"
+                        className="inline-block object-cover size-10 rounded-full ring-4 ring-slate-200"
+                      />
+                    </div>
                   ))}
                 </div>
                 <div className="flex flex-col justify-between sm:items-center">

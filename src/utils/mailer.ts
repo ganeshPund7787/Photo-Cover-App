@@ -17,8 +17,7 @@ export const sendMail = async (
   from: string,
   to: string,
   subject: string,
-  text: string,
-  html?: string,
+  text: string
 ) => {
   const transporter = createTransporter(
     process.env.EMAIL_USER as string,
@@ -30,12 +29,10 @@ export const sendMail = async (
     to,
     subject,
     text,
-    html,
   };
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log(`Email sent: ${info.response}`);
     return info;
   } catch (error) {
     console.error(`Error sending email: ${error}`);

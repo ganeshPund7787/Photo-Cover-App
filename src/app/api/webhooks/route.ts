@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { Resend } from "resend";
-import OrderReceivedEmail from "@/components/emails/OrderReceivedEmail";
 import { sendMail } from "@/utils/mailer";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -43,7 +42,7 @@ export async function POST(req: Request) {
       const billingAddress = session.customer_details!.address;
       const shippingAddress = session.shipping_details!.address;
 
-      const updatedOrder = await db.order.update({
+       await db.order.update({
         where: {
           id: orderId,
         },
@@ -72,35 +71,16 @@ export async function POST(req: Request) {
         },
       });
 
-      // await resend.emails.send({
-      //   from: "ganupund7787@gmail.com",
-      //   to: [event.data.object.customer_details.email],
-      //   subject: "Thanks for your order!",
-      //   react: OrderReceivedEmail({
-      //     orderId,
-      //     orderDate: updatedOrder.createdAt.toLocaleDateString(),
-
-      //     shippingAddress: {
-      //       id: "",
-      //       name: session.customer_details!.name!,
-      //       city: shippingAddress!.city!,
-      //       country: shippingAddress!.country!,
-      //       postalCode: shippingAddress!.postal_code!,
-      //       street: shippingAddress!.line1!,
-      //       state: shippingAddress!.state,
-      //       phoneNumber: null,
-      //     },
-      //   }),
-      // });
-
-      const res = await sendMail(
+      await sendMail(
         "ganupund7787@gmail.com",
         event.data.object.customer_details.email,
-        "Thanks for your order!",
-        "Hello",
-        "<h1>CaseCobra</h1>"
+        `Thank you for placing an order with casecobra! 🎉,
+        Youll receive a confirmation email once your order has been shipped, along with a tracking link to monitor its journey.
+         If you have any questions or need assistance, feel free to contact us at [Support Email Address]. Were here to help!
+         Once again, thank you for choosing [Your E-commerce Website Name]. We hope you love your personalized mobile cover as much as we loved creating it for you! 😊
+        `,
+        ""
       );
-      console.log("Responce of the email: ", res);
     }
     return NextResponse.json({ result: event, ok: true });
   } catch (err) {
