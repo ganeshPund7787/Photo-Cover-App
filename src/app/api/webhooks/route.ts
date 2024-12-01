@@ -42,7 +42,7 @@ export async function POST(req: Request) {
       const billingAddress = session.customer_details!.address;
       const shippingAddress = session.shipping_details!.address;
 
-       await db.order.update({
+      await db.order.update({
         where: {
           id: orderId,
         },
@@ -76,8 +76,8 @@ export async function POST(req: Request) {
         event.data.object.customer_details.email,
         `Thank you for placing an order with casecobra! 🎉,
         Youll receive a confirmation email once your order has been shipped, along with a tracking link to monitor its journey.
-         If you have any questions or need assistance, feel free to contact us at [Support Email Address]. Were here to help!
-         Once again, thank you for choosing [Your E-commerce Website Name]. We hope you love your personalized mobile cover as much as we loved creating it for you! 😊
+         If you have any questions or need assistance, feel free to contact us at ganeshpund890@gmail.com. Were here to help!
+         Once again, thank you for choosing casecobra. We hope you love your personalized mobile cover as much as we loved creating it for you! 😊
         `,
         ""
       );
