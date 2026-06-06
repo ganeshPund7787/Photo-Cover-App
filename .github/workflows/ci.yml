@@ -71,8 +71,18 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          # ✅ Dummy build-time args so Kinde/Stripe don't crash during next build
           build-args: |
             NEXT_PUBLIC_SERVER_URL=${{ secrets.NEXT_PUBLIC_SERVER_URL }}
+            KINDE_ISSUER_URL=https://placeholder.kinde.com
+            KINDE_CLIENT_ID=placeholder_client_id
+            KINDE_CLIENT_SECRET=placeholder_client_secret
+            KINDE_SITE_URL=http://localhost:3000
+            KINDE_POST_LOGOUT_REDIRECT_URL=http://localhost:3000
+            KINDE_POST_LOGIN_REDIRECT_URL=http://localhost:3000/auth-callback
+            STRIPE_SECREATE_KEY=sk_placeholder_key_for_build
+            STRIPE_WEBHOOK_SECRET=whsec_placeholder_for_build
+            DATABASE_URL=postgresql://placeholder:placeholder@placeholder:5432/placeholder
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
