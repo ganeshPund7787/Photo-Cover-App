@@ -6,13 +6,12 @@ import { getStripe } from "@/lib/stripe";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Order } from "@prisma/client";
 
-const stripe = getStripe();
-
 export const createCheckoutSession = async ({
   configId,
 }: {
   configId: string;
 }) => {
+  const stripe = getStripe();
   const configuration = await db.configuration.findUnique({
     where: { id: configId },
   });
