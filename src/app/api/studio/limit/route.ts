@@ -1,12 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const DAILY_LIMIT = 3;
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
-    console.log(req)
     const { getUser } = getKindeServerSession();
     const user = await getUser();
 
@@ -35,7 +34,7 @@ export async function GET(req: NextRequest) {
       remaining: Math.max(0, DAILY_LIMIT - used),
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return NextResponse.json({
       used: 0,
       limit: DAILY_LIMIT,

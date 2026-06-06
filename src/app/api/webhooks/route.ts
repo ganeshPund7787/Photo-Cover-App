@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
@@ -7,7 +7,7 @@ import Stripe from "stripe";
 import { sendMail } from "@/utils/mailer";
 
 // const resend = new Resend(process.env.RESEND_API_KEY);
-
+const stripe = getStripe();
 export async function POST(req: Request) {
   try {
     const body = await req.text();
