@@ -29,7 +29,7 @@ const Steps = () => {
       {STEPS.map((step, i) => {
         const isCurrent = pathname.endsWith(step.url);
         const isCompleted = STEPS.slice(i + 1).some((step) =>
-          pathname.endsWith(step.url)
+          pathname.endsWith(step.url),
         );
         const imgPath = `/snake-${i + 1}.png`;
 
@@ -42,7 +42,7 @@ const Steps = () => {
                   {
                     "bg-zinc-700": isCurrent,
                     "bg-primary": isCompleted,
-                  }
+                  },
                 )}
                 aria-hidden="true"
               />
@@ -50,18 +50,19 @@ const Steps = () => {
               <span
                 className={cn(
                   i !== 0 ? "lg:pl-9" : "",
-                  "flex items-center px-6 py-4 text-sm font-medium"
+                  "flex items-center px-6 py-4 text-sm font-medium",
                 )}
               >
                 <span className="flex-shrink-0">
                   <img
+                    alt="Stpes"
                     src={imgPath}
                     className={cn(
                       "flex h-20 w-20 object-contain items-center justify-center",
                       {
                         "border-none": isCompleted,
                         "border-zinc-700": isCurrent,
-                      }
+                      },
                     )}
                   />
                 </span>

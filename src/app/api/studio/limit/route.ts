@@ -6,6 +6,7 @@ const DAILY_LIMIT = 3;
 
 export async function GET(req: NextRequest) {
   try {
+    console.log(req)
     const { getUser } = getKindeServerSession();
     const user = await getUser();
 
@@ -34,6 +35,7 @@ export async function GET(req: NextRequest) {
       remaining: Math.max(0, DAILY_LIMIT - used),
     });
   } catch (error) {
+    console.log(error)
     return NextResponse.json({
       used: 0,
       limit: DAILY_LIMIT,

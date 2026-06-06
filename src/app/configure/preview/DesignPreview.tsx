@@ -25,7 +25,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const { user } = useKindeBrowserClient();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
-  useEffect(() => setShowConfetti(true));
+  useEffect(() => setShowConfetti(true),[]);
   const tw = COLORS.find(
     (supportedColor) => supportedColor.value === color
   )?.tw;
