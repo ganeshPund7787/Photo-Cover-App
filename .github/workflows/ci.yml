@@ -82,32 +82,32 @@ jobs:
           cache-to: type=gha,mode=max
 
   # JOB 3: Deploy to Vercel
-  # deploy:
-  #   name: 🚀 Deploy to Vercel
-  #   runs-on: ubuntu-latest
-  #   needs: [lint, docker]
-  #   if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+  deploy:
+    name: 🚀 Deploy to Vercel
+    runs-on: ubuntu-latest
+    needs: [lint, docker]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: "20"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-  #     - name: Install Vercel CLI
-  #       run: npm install -g vercel
+      - name: Install Vercel CLI
+        run: npm install -g vercel
 
-  #     - name: Pull Vercel Environment
-  #       run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Pull Vercel Environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-  #     - name: Build Project via Vercel
-  #       run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project via Vercel
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
-  #     - name: Deploy to Vercel Production
-  #       run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy to Vercel Production
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
 
   # JOB 4: Notify
   notify:
