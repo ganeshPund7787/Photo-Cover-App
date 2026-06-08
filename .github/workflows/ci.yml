@@ -7,9 +7,7 @@ on:
     branches: [main, master]
 
 jobs:
-  # ─────────────────────────────────────────
   # JOB 1: Lint & Type Check
-  # ─────────────────────────────────────────
   lint:
     name: 🔍 Lint & Type Check
     runs-on: ubuntu-latest
@@ -33,9 +31,7 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-  # ─────────────────────────────────────────
   # JOB 2: Build & Push Docker Image
-  # ─────────────────────────────────────────
   docker:
     name: 🐳 Build & Push Docker Image
     runs-on: ubuntu-latest
@@ -71,7 +67,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          # ✅ Dummy build-time args so Kinde/Stripe don't crash during next build
           build-args: |
             NEXT_PUBLIC_SERVER_URL=${{ secrets.NEXT_PUBLIC_SERVER_URL }}
             KINDE_ISSUER_URL=https://placeholder.kinde.com
@@ -86,9 +81,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # ─────────────────────────────────────────
   # JOB 3: Deploy to Vercel
-  # ─────────────────────────────────────────
   deploy:
     name: 🚀 Deploy to Vercel
     runs-on: ubuntu-latest
@@ -116,9 +109,7 @@ jobs:
       - name: Deploy to Vercel Production
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
 
-  # ─────────────────────────────────────────
   # JOB 4: Notify
-  # ─────────────────────────────────────────
   notify:
     name: ✅ Pipeline Complete
     runs-on: ubuntu-latest
